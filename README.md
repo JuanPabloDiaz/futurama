@@ -1,6 +1,4 @@
-# 🚀 Futurama Character Explorer
-
-![Futurama](https://i.imgur.com/XFtPuIY.png)
+![🚀 Futurama](/public/logo.svg)
 
 A modern, full-stack web application showcasing characters from the beloved sci-fi animated series Futurama. Built with Next.js, React, and Tailwind CSS.
 

@@ -54,11 +54,11 @@ const CharacterImage = ({ src, alt, name }) => {
   return (
     <>
       {imgError ? (
-        // Mostrar un fallback con estilo de Futurama
+        // fallback with Futurama style
         <div className="w-full h-full flex flex-col items-center justify-center bg-[#080A0E] bg-scan-lines">
           <FaExclamationTriangle className="text-[#FF2F92] text-3xl mb-2" />
           <div className="text-center px-2">
-            <p className="text-[#00B8D4] text-sm font-mono glow-text">IMAGEN NO DISPONIBLE</p>
+            <p className="text-[#00B8D4] text-sm font-mono glow-text">IMAGE NOT FOUND</p>
             <p className="text-white text-xs mt-1">{name}</p>
           </div>
         </div>
@@ -164,36 +164,39 @@ export default function HomePage() {
       
       {/* Hero section */}
       <div className="container mx-auto px-4 py-8 relative">
+      
         <div className="flex flex-col items-center justify-center py-12 text-center">
-          <div className="relative mb-6">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#005CA1] to-[#FF2F92] opacity-30 blur-lg"></div>
-            <h1 className="relative text-5xl font-black mb-2 text-white tracking-tight">
-              FUTURAMA<span className="text-[#FF2F92]">.</span>
-            </h1>
-              {/* Futurama logo */}
-        {/* <div className="relative w-64 h-64 mx-auto mb-8">
+        {/* Futurama logo */}
+        <div className="relative w-80 h-80 mx-auto">
           <Image
-            src="/logo.svg"
+            src="/futurama.png"
+            // src="/logo.svg"
             alt="Futurama Logo"
             fill
             priority
             className="object-contain"
           />
-        </div> */}
+        </div>
+        {/* Futurama text */}
+        {/* <div className="relative mb-6">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#005CA1] to-[#FF2F92] opacity-30 blur-lg"></div>
+            <h1 className="relative text-5xl font-black mb-2 text-white tracking-tight">
+              FUTURAMA<span className="text-[#FF2F92]">.</span>
+            </h1>
             <div className="h-1 w-24 bg-[#005CA1] mx-auto"></div>
-          </div>
+          </div> */}
           
-          <p className="text-xl mb-8 max-w-2xl text-gray-400 font-medium">
+          <p className="text-xl mb-2 max-w-2xl text-gray-400 font-medium">
             CHARACTER DATABASE <span className="text-[#00B8D4]">// PLANET EXPRESS CREW</span>
           </p>
           
-          <div className="bg-[#080A0E] border border-[#005CA1]/30 rounded px-6 py-3 inline-block">
-            <p className="text-lg font-mono">CHARACTERS: <span className="text-[#FF2F92] font-bold">{characters.length}</span></p>
+          <div className="bg-[#080A0E] border border-[#005CA1]/30 rounded px-4 py-2 inline-block">
+            <p className="text-md font-mono">CHARACTERS: <span className="text-[#FF2F92] font-bold">{characters.length}</span></p>
           </div>
         </div>
 
         {/* Character grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-2">
           {characters.map(character => (
             <div key={character.id} className="bg-[#080A0E] rounded-md overflow-hidden border border-[#005CA1]/20 hover:border-[#00B8D4]/30 transition-all duration-300 group">
               {/* Character header with ID number */}
@@ -205,6 +208,7 @@ export default function HomePage() {
               {/* Character image with tech frame */}
               <div className="p-4 relative">
                 <div className="relative w-full aspect-square overflow-hidden border-2 border-[#080A0E] outline outline-1 outline-[#005CA1]/30 group-hover:outline-[#FF2F92]/30 transition-all">
+                 <a href={`/characters/${character.slug}`}>
                   {/* Corner accents */}
                   <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#FF2F92]/50"></div>
                   <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#FF2F92]/50"></div>
@@ -212,6 +216,7 @@ export default function HomePage() {
                   <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#FF2F92]/50"></div>
                   
                   {/* Character image with fallback system */}
+                  
                   <CharacterImage 
                     src={character.avatar} 
                     alt={character.name} 
@@ -220,6 +225,7 @@ export default function HomePage() {
                   
                   {/* Tech overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080A0E] to-transparent opacity-40"></div>
+                </a>
                 </div>
               </div>
               

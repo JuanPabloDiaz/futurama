@@ -21,16 +21,30 @@ export const Navigation = () => {
       </div>
       
       {/* Main navigation content */}
-      <Container className="relative flex items-center justify-between py-4" as="nav">
+      <Container className="relative flex items-center justify-between py-2" as="nav">
         <Link href="/" className="flex items-center space-x-3 group">
-          <div className="relative h-10 w-10 overflow-hidden">
+          <div className="relative h-12 w-12 overflow-hidden">
             {/* Planet Express logo styling */}
-            <div className="absolute inset-0 flex items-center justify-center bg-[#AF1010] rounded-full transform group-hover:scale-110 transition-transform duration-300 border-2 border-[#FF2F92]/20">
-              <FaRocket className="text-white text-lg" />
+            <div className="absolute inset-0 flex items-center justify-center rounded-full transform group-hover:scale-110 transition-transform duration-300">
+              {/* <FaRocket className="text-white text-lg" /> */}
+              <Image
+                src="/planet-express.png"
+                alt="Planet Express Logo"
+                width={100}
+                height={100}
+                className="h-12 w-12"
+              />
             </div>
           </div>
           <div>
-            <span className="text-xl font-black tracking-wider text-white">FUTURAMA</span>
+            <Image
+              src="/logo.png"
+              alt="Futurama Logo"
+              width={100}
+              height={100}
+              className="h-10 w-full"
+            />
+            {/* <span className="text-xl font-black tracking-wider text-white">FUTURAMA</span> */}
             <div className="flex items-center">
               <span className="text-xs text-[#00B8D4] font-mono tracking-wider">PLANET EXPRESS</span>
               <span className="ml-1 h-1 w-1 rounded-full bg-[#FF2F92]"></span>
@@ -44,13 +58,13 @@ export const Navigation = () => {
             <FaRocket className="text-[#005CA1]" />
             <span>Home</span>
           </Link>
-          <Link href="/characters" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
+          <Link href="https://futuramaapi.com" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
             <FaUserAstronaut className="text-[#005CA1]" />
-            <span>Characters</span>
+            <span>Futuramaapi.com</span>
           </Link>
-          <Link href="/about" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
+          <Link href="/api/characters" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
             <FaRobot className="text-[#005CA1]" />
-            <span>About</span>
+            <span>Backend API</span>
           </Link>
         </div>
       </Container>
