@@ -361,7 +361,7 @@
       },
       "images": {
         "head-shot": "",
-        "main": "https://static.wikia.nocookie.net/enfuturama/images/0/0d/Hermes.png"
+        "main": "https://i.namu.wiki/i/M_3m4D6TDOJeEgaWqrD16B2eaJSBqdNA56rqZg0PRQjnT8JgyD1eKLX1_Xl5i0nuqnkGI5PGSAmgTiLyORLNhqeNcuikRMLWgKV3rBpcq5syZtrLIvwvWcW9jOIbexIWf5JA65nRFjaP9wkz7MRY4NYpGwDOvj--SmcMU3Z7i54.webp"
       },
       "age": "52",
       "gender": "Male",
@@ -410,7 +410,7 @@
       },
       "images": {
         "head-shot": "",
-        "main": "https://static.wikia.nocookie.net/enfuturama/images/4/4a/Dr_John_Zoidberg.png"
+        "main": "https://static.wikia.nocookie.net/enfuturama/images/1/17/Zoidberg.png"
       },
       "age": "40",
       "gender": "Male",
@@ -436,7 +436,7 @@
       },
       "images": {
         "head-shot": "",
-        "main": "https://static.wikia.nocookie.net/enfuturama/images/7/73/Zapp-Brannigan.png"
+        "main": "https://static.wikia.nocookie.net/enfuturama/images/f/fe/Zapp_Brannigan_-_Official_Character_Promo.jpg"
       },
       "age": "40",
       "gender": "Male",
@@ -579,5 +579,24 @@
         "All in favor of the Jamoka-Thunderclap? That would be me."
       ],
       "id": 15
+    },
+    {
+      "name": {
+        "first": "Lord",
+        "middle": "",
+        "last": "Nibbler"
+      },
+      "images": {
+        "head-shot": "",
+        "main": "https://static.wikia.nocookie.net/enfuturama/images/2/24/Lord_Nibbler_-_Official_Character_Promo.jpg"
+      },
+      "age": "3274",
+      "gender": "Male",
+      "species": "Nibblonian",
+      "occupation": "Ambassador to Earth",
+      "sayings": [
+        "I'm a Nibblonian!"
+      ],
+      "id": 16
     }
   ]

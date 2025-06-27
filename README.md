@@ -71,6 +71,7 @@ A modern, full-stack web application showcasing characters from the beloved sci-
 ## 📚 Resources
 
 - [sampleapis.com Futurama API](https://api.sampleapis.com/futurama/characters) - Reference API
+- [Futurama fandom](https://futurama.fandom.com)
 - [futuramaapi.com](https://futuramaapi.com) - Quotes API
 
 ## 📄 License
