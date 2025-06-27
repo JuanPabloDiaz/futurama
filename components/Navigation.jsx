@@ -58,10 +58,10 @@ export const Navigation = () => {
             <FaRobot className="text-[#005CA1]" />
             <span>Backend API</span>
           </Link>
-          <Link href="https://futuramaapi.com" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
+          {/* <Link href="https://futuramaapi.com" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
             <FaUserAstronaut className="text-[#005CA1]" />
             <span>Futuramaapi.com</span>
-          </Link>
+          </Link> */}
         </div>
       </Container>
       

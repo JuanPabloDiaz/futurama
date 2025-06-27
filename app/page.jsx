@@ -166,9 +166,9 @@ export default function HomePage() {
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5 pointer-events-none"></div>
       
       {/* Hero section */}
-      <div className="container mx-auto px-4 py-8 relative">
+      <div className="container mx-auto px-4 py-2 relative">
       
-        <div className="flex flex-col items-center justify-center py-12 text-center">
+        <div className="flex flex-col items-center justify-center text-center">
         {/* Futurama logo */}
         <div className="relative w-80 h-80 mx-auto">
           <Image

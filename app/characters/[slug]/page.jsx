@@ -85,6 +85,8 @@ export default function CharacterDetailPage({ params }) {
   const [quotes, setQuotes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  // State for "Read More" functionality for sayings
+  const [showAllSayings, setShowAllSayings] = useState(false)
 
   useEffect(() => {
     // Fetch character details directly from the API
@@ -157,7 +159,7 @@ export default function CharacterDetailPage({ params }) {
               href="/"
               className="bg-[#080A0E] text-[#00B8D4] py-2 px-4 border border-[#005CA1]/50 hover:bg-[#005CA1]/10 transition-colors duration-300 font-medium text-sm uppercase"
             >
-              Return to Database
+              Return to Character Database
             </Link>
             <button
               onClick={() => window.location.reload()}
@@ -187,13 +189,18 @@ export default function CharacterDetailPage({ params }) {
               href="/"
               className="bg-[#080A0E] text-[#00B8D4] py-2 px-4 border border-[#005CA1]/50 hover:bg-[#005CA1]/10 transition-colors duration-300 font-medium text-sm uppercase"
             >
-              Return to Database
+              Return to Character Database
             </Link>
           </div>
         </div>
       </div>
     )
   }
+
+  // Calculate which sayings to display
+  const allSayings = character.sayings || [];
+  const initialSayings = allSayings.slice(0, 6);
+  const remainingSayings = allSayings.slice(6);
 
   return (
     <div className="min-h-screen bg-[#0D1117] text-white">
@@ -216,22 +223,19 @@ export default function CharacterDetailPage({ params }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </span>
-          <span className="font-mono text-sm uppercase tracking-wider">Return to Database</span>
+          <span className="font-mono text-sm uppercase tracking-wider">Return Home</span>
         </Link>
 
         {/* Character profile container */}
         <div className="bg-[#080A0E] border border-[#005CA1]/30 rounded-lg overflow-hidden shadow-lg shadow-[#00B8D4]/10">
           {/* Character header with Planet Express styling */}
-          <div className="bg-gradient-to-r from-[#AF1010] to-[#8B0000] p-4 relative overflow-hidden">
+          <div className="bg-[#080A0E] p-4 relative overflow-hidden">
             {/* Futuristic circuit pattern overlay */}
             <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
             
             {/* Tube-like header design */}
             <div className="relative z-10 flex items-center justify-between">
               <div className="flex items-center">
-                <div className="h-8 w-8 bg-[#080A0E] rounded-full flex items-center justify-center border-2 border-white/20 mr-3">
-                  <span className="text-[#00B8D4] font-bold text-xs">PE</span>
-                </div>
                 <h1 className="text-3xl font-black text-white tracking-tight">{character.name?.full || character.name}</h1>
               </div>
               <div className="bg-[#080A0E] px-3 py-1 rounded-full border border-white/20">
@@ -401,6 +405,50 @@ export default function CharacterDetailPage({ params }) {
                           </li>
                         ))}
                       </ul>
+                    </div>
+                  </div>
+                )}
+
+                 {/* Sayings with neon styling */}
+                 {allSayings.length > 0 && (
+                  <div className="mb-6">
+                    <h2 className="text-xl font-bold mb-3 text-[#00B8D4] flex items-center">
+                      <span className="inline-block w-3 h-3 bg-[#00B8D4] mr-2"></span>
+                      Iconic Phrases
+                    </h2>
+                    <div className="bg-[#0D1117] border border-[#005CA1]/30 p-4 rounded-md">
+                      <ul className="flex flex-wrap gap-2">
+                        {/* Display initial 10 sayings */}
+                        {initialSayings.map((saying, index) => (
+                          <li
+                            key={`initial-saying-${index}`} // Unique key
+                            className="bg-[#080A0E] text-[#00B8D4] px-3 py-1 border border-[#00B8D4]/30 text-sm font-mono"
+                          >
+                            {saying}
+                          </li>
+                        ))}
+
+                        {/* Conditionally display the rest of the sayings */}
+                        {showAllSayings &&
+                          remainingSayings.map((saying, index) => (
+                            <li
+                              key={`remaining-saying-${index}`} // Unique key
+                              className="bg-[#080A0E] text-[#00B8D4] px-3 py-1 border border-[#00B8D4]/30 text-sm font-mono"
+                            >
+                              {saying}
+                            </li>
+                          ))}
+                      </ul>
+
+                      {/* "Read More/Less" button */}
+                      {allSayings.length > 10 && (
+                        <button
+                          onClick={() => setShowAllSayings(!showAllSayings)}
+                          className="mt-4 text-[#00B8D4] hover:text-[#008FB2] text-sm font-bold focus:outline-none"
+                        >
+                          {showAllSayings ? 'Read Less' : 'Read More'}
+                        </button>
+                      )}
                     </div>
                   </div>
                 )}
