@@ -7,7 +7,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaRocket, FaExclamationTriangle } from 'react-icons/fa'
+import { FaExclamationTriangle } from 'react-icons/fa'
 
 // Componente para manejar imágenes con fallback
 const CharacterImage = ({ src, alt, name }) => {
@@ -68,7 +68,7 @@ const CharacterImage = ({ src, alt, name }) => {
           alt={alt} 
           fill
           sizes="100%"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          className="object-contain group-hover:scale-105 transition-transform duration-500"
           onError={handleError}
           priority={true}
         />
@@ -177,17 +177,8 @@ export default function HomePage() {
             className="object-contain"
           />
         </div>
-        {/* Futurama text */}
-        {/* <div className="relative mb-6">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#005CA1] to-[#FF2F92] opacity-30 blur-lg"></div>
-            <h1 className="relative text-5xl font-black mb-2 text-white tracking-tight">
-              FUTURAMA<span className="text-[#FF2F92]">.</span>
-            </h1>
-            <div className="h-1 w-24 bg-[#005CA1] mx-auto"></div>
-          </div> */}
-          
           <p className="text-xl mb-2 max-w-2xl text-gray-400 font-medium">
-            CHARACTER DATABASE <span className="text-[#00B8D4]">{/* PLANET EXPRESS CREW */} PLANET EXPRESS CREW</span>
+            CHARACTER DATABASE <span className="text-[#00B8D4]">PLANET EXPRESS CREW</span>
           </p>
           
           <div className="bg-[#080A0E] border border-[#005CA1]/30 rounded px-4 py-2 inline-block">

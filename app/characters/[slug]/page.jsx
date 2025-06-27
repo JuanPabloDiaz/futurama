@@ -71,7 +71,7 @@ const CharacterImage = ({ src, alt, name }) => {
           alt={alt} 
           fill
           sizes="100%"
-          className="object-cover"
+          className="object-contain"
           onError={handleError}
           priority={true}
         />
@@ -367,40 +367,6 @@ export default function CharacterDetailPage({ params }) {
                 )}
               </div>
             </div>
-
-            {/* Character images with tech frame */}
-            {character.images && character.images.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-xl font-bold mb-4 text-[#FF2F92] flex items-center">
-                  <span className="inline-block w-3 h-3 bg-[#FF2F92] mr-2"></span>
-                  Image Gallery
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {character.images.map((image, index) => (
-                    <div
-                      key={index}
-                      className="relative border border-[#005CA1]/30 rounded overflow-hidden"
-                    >
-                      {/* Corner accents */}
-                      <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#FF2F92]/70 z-10"></div>
-                      <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#FF2F92]/70 z-10"></div>
-                      <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#FF2F92]/70 z-10"></div>
-                      <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#FF2F92]/70 z-10"></div>
-                      
-                      <div className="aspect-video relative">
-                        <CharacterImage
-                          src={image}
-                          alt={`${character.name} ${index + 1}`}
-                          name={`${character.name} - Imagen ${index + 1}`}
-                        />
-                        {/* Tech overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#080A0E] to-transparent opacity-30"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Character quotes with holographic styling */}
             {quotes && quotes.length > 0 && (
