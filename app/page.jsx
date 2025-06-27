@@ -5,13 +5,57 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { FaRocket, FaExclamationTriangle } from 'react-icons/fa'
+
+// Componente para manejar imágenes con fallback
+const CharacterImage = ({ src, alt, name }) => {
+  const [imgSrc, setImgSrc] = useState(src)
+  const [imgError, setImgError] = useState(false)
+
+  // Reset error state if src changes
+  useEffect(() => {
+    setImgSrc(src)
+    setImgError(false)
+  }, [src])
+
+  const handleError = () => {
+    setImgError(true)
+    // No intentamos cargar otra imagen, simplemente mostramos el componente de fallback
+  }
+
+  return (
+    <>
+      {imgError ? (
+        // Mostrar un fallback con estilo de Futurama
+        <div className="w-full h-full flex flex-col items-center justify-center bg-[#080A0E] bg-scan-lines">
+          <FaExclamationTriangle className="text-[#FF2F92] text-3xl mb-2" />
+          <div className="text-center px-2">
+            <p className="text-[#00B8D4] text-sm font-mono glow-text">IMAGEN NO DISPONIBLE</p>
+            <p className="text-white text-xs mt-1">{name}</p>
+          </div>
+        </div>
+      ) : (
+        <Image 
+          src={imgSrc} 
+          alt={alt} 
+          fill
+          sizes="100%"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          onError={handleError}
+          priority={true}
+        />
+      )}
+    </>
+  )
+}
 
 export default function HomePage() {
   const [characters, setCharacters] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [imageLoading, setImageLoading] = useState({})
 
   useEffect(() => {
     // Fetch characters directly from the API
@@ -131,16 +175,11 @@ export default function HomePage() {
                   <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#FF2F92]/50"></div>
                   <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#FF2F92]/50"></div>
                   
-                  <Image 
+                  {/* Character image with fallback system */}
+                  <CharacterImage 
                     src={character.avatar} 
                     alt={character.name} 
-                    fill
-                    sizes="100%"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      e.target.onerror = null
-                      e.target.src = 'https://via.placeholder.com/300?text=Character'
-                    }}
+                    name={character.name}
                   />
                   
                   {/* Tech overlay */}
@@ -181,10 +220,12 @@ export default function HomePage() {
             <div className="w-8 h-8 bg-[#AF1010] rounded-full flex items-center justify-center mr-3">
               <span className="text-white font-bold text-xs">PE</span>
             </div>
-            <p className="text-gray-400 font-mono text-sm">PLANET EXPRESS <span className="text-[#00B8D4]">©{new Date().getFullYear()}</span></p>
+            <p className="text-gray-400 font-mono text-sm">PLANET EXPRESS <span className="text-[#00B8D4]">© {new Date().getFullYear()}</span></p>
           </div>
           <div className="flex items-center space-x-4">
-            <span className="text-xs text-gray-500 font-mono">SYSTEM VERSION 3.0.0.1</span>
+           <span className="text-xs text-gray-500 font-mono">Developed by
+            <a href="https://linkedin.com/in/1diazdev" target="_blank" className="pl-1 hover:text-[#FF2F92] transition-colors duration-300">Juan Diaz</a>
+            </span> 
             <div className="h-2 w-2 rounded-full bg-[#FF2F92] animate-pulse"></div>
           </div>
         </div>
