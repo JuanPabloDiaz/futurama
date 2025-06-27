@@ -30,7 +30,6 @@ export async function GET() {
       name: `${character.name.first} ${character.name.last}`.trim(),
       slug: slug,
       avatar: avatarUrl,
-      description: `${fullName} is a character from Futurama.`,
       gender: character.gender || 'unknown'
     }
   })

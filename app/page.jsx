@@ -187,7 +187,7 @@ export default function HomePage() {
           </div> */}
           
           <p className="text-xl mb-2 max-w-2xl text-gray-400 font-medium">
-            CHARACTER DATABASE <span className="text-[#00B8D4]">// PLANET EXPRESS CREW</span>
+            CHARACTER DATABASE <span className="text-[#00B8D4]">{/* PLANET EXPRESS CREW */} PLANET EXPRESS CREW</span>
           </p>
           
           <div className="bg-[#080A0E] border border-[#005CA1]/30 rounded px-4 py-2 inline-block">
@@ -254,24 +254,7 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-      
-      {/* Footer */}
-      <footer className="container mx-auto px-4 py-8 border-t border-[#005CA1]/20 mt-12">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center mb-4 md:mb-0">
-            <div className="w-8 h-8 bg-[#AF1010] rounded-full flex items-center justify-center mr-3">
-              <span className="text-white font-bold text-xs">PE</span>
-            </div>
-            <p className="text-gray-400 font-mono text-sm">PLANET EXPRESS <span className="text-[#00B8D4]">© {new Date().getFullYear()}</span></p>
-          </div>
-          <div className="flex items-center space-x-4">
-           <span className="text-xs text-gray-500 font-mono">Developed by
-            <a href="https://linkedin.com/in/1diazdev" target="_blank" className="pl-1 hover:text-[#FF2F92] transition-colors duration-300">Juan Diaz</a>
-            </span> 
-            <div className="h-2 w-2 rounded-full bg-[#FF2F92] animate-pulse"></div>
-          </div>
-        </div>
-      </footer>
+  
     </div>
   )
 }

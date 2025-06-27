@@ -48,7 +48,6 @@ export async function GET(req, { params }) {
       id: character.id,
       name: fullName,
       slug: slug,
-      description: `${fullName} is a character from Futurama.`,
       gender: character.gender || 'unknown',
       species: character.species || 'unknown',
       homePlanet: character.homePlanet || 'unknown',

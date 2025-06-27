@@ -38,7 +38,7 @@ export default function NotFound() {
         <div className="bg-[#080A0E] border border-[#005CA1]/30 p-6 rounded-lg mb-8 bg-scan-lines">
           <h2 className="text-2xl font-bold mb-2 text-[#00B8D4] glow-text">PLANET NOT FOUND</h2>
           <p className="text-gray-300 mb-4">
-            The spacetime coordinates you're looking for don't exist in this universe.
+            The spacetime coordinates you&apos;re looking for don&apos;t exist in this universe.
           </p>
           <div className="flex items-center justify-center space-x-2 text-[#FF2F92]">
             <div className="h-2 w-2 rounded-full bg-[#FF2F92] animate-pulse"></div>

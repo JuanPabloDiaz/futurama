@@ -22,13 +22,13 @@ export const Navigation = () => {
       
       {/* Main navigation content */}
       <Container className="relative flex items-center justify-between py-2" as="nav">
-        <Link href="/" className="flex items-center space-x-3 group">
+        <Link href="/" className="flex items-center space-x-4 group">
           <div className="relative h-12 w-12 overflow-hidden">
             {/* Planet Express logo styling */}
             <div className="absolute inset-0 flex items-center justify-center rounded-full transform group-hover:scale-110 transition-transform duration-300">
               {/* <FaRocket className="text-white text-lg" /> */}
               <Image
-                src="/planet-express.png"
+                src="/icon.png"
                 alt="Planet Express Logo"
                 width={100}
                 height={100}
@@ -53,7 +53,7 @@ export const Navigation = () => {
         </Link>
         
         {/* Navigation links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-10">
           <Link href="/" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
             <FaRocket className="text-[#005CA1]" />
             <span>Home</span>
