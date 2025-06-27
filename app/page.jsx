@@ -13,6 +13,9 @@ import { FaExclamationTriangle } from 'react-icons/fa'
 const CharacterImage = ({ src, alt, name }) => {
   const [imgSrc, setImgSrc] = useState(src)
   const [imgError, setImgError] = useState(false)
+  
+  // Procesar el nombre para manejar tanto strings como objetos
+  const displayName = typeof name === 'object' ? (name?.full || `${name?.first || ''} ${name?.last || ''}`) : name
 
   // Reset error state if src changes
   useEffect(() => {
@@ -38,7 +41,7 @@ const CharacterImage = ({ src, alt, name }) => {
         slug = parts[parts.length - 1].split('?')[0]
       } else {
         // Create slug from name
-        slug = name.toLowerCase().replace(/\s+/g, '-')
+        slug = displayName.toLowerCase().replace(/\s+/g, '-')
       }
       
       // Use our API route as fallback
@@ -59,7 +62,7 @@ const CharacterImage = ({ src, alt, name }) => {
           <FaExclamationTriangle className="text-[#FF2F92] text-3xl mb-2" />
           <div className="text-center px-2">
             <p className="text-[#00B8D4] text-sm font-mono glow-text">IMAGE NOT FOUND</p>
-            <p className="text-white text-xs mt-1">{name}</p>
+            <p className="text-white text-xs mt-1">{displayName}</p>
           </div>
         </div>
       ) : (
@@ -192,7 +195,7 @@ export default function HomePage() {
             <div key={character.id} className="bg-[#080A0E] rounded-md overflow-hidden border border-[#005CA1]/20 hover:border-[#00B8D4]/30 transition-all duration-300 group">
               {/* Character header with ID number */}
               <div className="flex items-center justify-between bg-[#0D1117] border-b border-[#005CA1]/20 px-3 py-2">
-                <h2 className="text-lg font-bold text-white truncate">{character.name}</h2>
+                <h2 className="text-lg font-bold text-white truncate">{character.name?.full || `${character.name?.first || ''} ${character.name?.last || ''}`}</h2>
                 <span className="text-xs font-mono text-[#00B8D4] bg-[#005CA1]/10 px-2 py-1 rounded">ID.{character.id}</span>
               </div>
               

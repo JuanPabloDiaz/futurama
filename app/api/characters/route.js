@@ -1,36 +1,75 @@
 /**
- * Retrieves a list of characters from the characters.json file.
- * @returns {Promise<Object>} A promise that resolves to an object containing the Futurama characters data.
+ * Retrieves a list of characters from the characters.json file with all available data.
+ * @returns {Promise<Object>} A promise that resolves to an object containing the complete Futurama characters data.
  */
 
 import characters from '@/data/characters.json'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  // Transform Futurama character data to match the expected format
+  // Transform Futurama character data to include all available fields
   const transformedCharacters = characters.map(character => {
     // Create a slug from the character's first and last name
     const fullName = `${character.name.first} ${character.name.last}`.trim()
     const slug = fullName.toLowerCase().replace(/\s+/g, '-')
     
-    // Use character's image from the data if available, otherwise create a reliable fallback URL
-    // We'll use a consistent pattern for the avatar URLs that won't rely on external services
-    let avatarUrl = character.images?.main || character.images?.[0] || ''
+    // Use character's image from the data if available, otherwise leave empty
+    let avatarUrl = character.images?.main || ''
+    let image1 = character.images?.['head-shot'] || character.images?.main || ''
+    let image2 = character.images?.main || ''
     
-    // If no image is available in the data, use a reliable fallback
-    if (!avatarUrl) {
-      // Use a consistent pattern based on character ID for color
-      const colorIndex = character.id % 5
-      const colors = ['00B8D4', 'FF2F92', '005CA1', 'AF1010', '6B5CA5']
-      avatarUrl = `/api/character-avatar/${slug}?color=${colors[colorIndex]}`
+    // Define skills based on character name - similar to individual endpoint
+    let skills = ['Future Living', 'Space Travel']
+    
+    if (fullName === 'Philip Fry') {
+      skills = ['Pizza Delivery', 'Time Travel Survival', 'Video Games']
+    } else if (fullName === 'Bender Rodriguez') {
+      skills = ['Bending', 'Theft', 'Cooking', 'Drinking']
+    } else if (fullName === 'Turanga Leela') {
+      skills = ['Piloting', 'Martial Arts', 'Leadership']
+    } else if (fullName === 'Hubert Farnsworth') {
+      skills = ['Inventing', 'Science', 'Doomsday Devices']
+    } else if (fullName === 'Amy Wong') {
+      skills = ['Engineering', 'Martian Farming', 'Languages']
+    } else if (fullName === 'Hermes Conrad') {
+      skills = ['Bureaucracy', 'Limbo', 'Organization']
     }
     
+    // Process quotes for display - take up to 5 random sayings
+    let character_quotes = []
+    if (character.sayings && character.sayings.length > 0) {
+      // Take up to 5 random sayings
+      const randomSayings = [...character.sayings]
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 5)
+      
+      character_quotes = randomSayings
+    }
+    
+    // Create an enhanced character object with all available details
     return {
       id: character.id,
-      name: `${character.name.first} ${character.name.last}`.trim(),
+      name: {
+        first: character.name.first || '',
+        middle: character.name.middle || '',
+        last: character.name.last || '',
+        full: fullName
+      },
       slug: slug,
+      gender: character.gender || 'unknown',
+      species: character.species || 'unknown',
+      homePlanet: character.homePlanet || 'unknown',
+      occupation: character.occupation || 'unknown',
+      age: character.age || 'unknown',
       avatar: avatarUrl,
-      gender: character.gender || 'unknown'
+      images: {
+        main: character.images?.main || '',
+        'head-shot': character.images?.['head-shot'] || '',
+        additional: [image1, image2].filter(img => img)
+      },
+      sayings: character.sayings || [],
+      quotes: character_quotes,
+      skills: skills
     }
   })
 

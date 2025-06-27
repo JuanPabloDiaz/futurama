@@ -258,7 +258,7 @@ export default function CharacterDetailPage({ params }) {
                     <div className="aspect-square relative">
                       <CharacterImage
                         src={character.avatar}
-                        alt={character.name}
+                        alt={character.name?.full || `${character.name?.first || ''} ${character.name?.last || ''}`}
                         name={character.name}
                       />
                       
@@ -343,13 +343,6 @@ export default function CharacterDetailPage({ params }) {
                   </h2>
                   <div className="bg-[#0D1117] border border-[#005CA1]/30 p-4 rounded-md">
                     <div className="space-y-3">
-                      {character.occupation && (
-                        <div>
-                          <h3 className="text-[#FF2F92] font-medium mb-1">Occupation</h3>
-                          <p className="text-gray-300">{character.occupation}</p>
-                        </div>
-                      )}
-                      
                       {character.description ? (
                         <p className="text-gray-300">{character.description}</p>
                       ) : (

@@ -54,17 +54,13 @@ export const Navigation = () => {
         
         {/* Navigation links */}
         <div className="hidden md:flex items-center space-x-10">
-          <Link href="/" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
-            <FaRocket className="text-[#005CA1]" />
-            <span>Home</span>
+          <Link href="/api/characters" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
+            <FaRobot className="text-[#005CA1]" />
+            <span>Backend API</span>
           </Link>
           <Link href="https://futuramaapi.com" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
             <FaUserAstronaut className="text-[#005CA1]" />
             <span>Futuramaapi.com</span>
-          </Link>
-          <Link href="/api/characters" target="_blank" className="text-gray-300 hover:text-[#00B8D4] transition-colors flex items-center space-x-2 font-medium">
-            <FaRobot className="text-[#005CA1]" />
-            <span>Backend API</span>
           </Link>
         </div>
       </Container>
