@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --futurama-dark: 13, 17, 23; /* #0D1117 */
+  --futurama-darker: 8, 10, 14; /* #080A0E */
+  --futurama-blue: 0, 92, 161; /* #005CA1 */
+  --futurama-cyan: 0, 184, 212; /* #00B8D4 */
+  --futurama-accent: 255, 47, 146; /* #FF2F92 */
+  --planet-express: 175, 16, 16; /* #AF1010 */
+}
+
+/* Base styles */
+body {
+  color: white;
+  background-color: #0D1117;
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+/* Futurama-themed components */
+.futurama-card {
+  background-color: rgba(49, 46, 129, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(67, 56, 202, 0.5);
+}
+
+.futurama-button {
+  background: linear-gradient(to right, #005CA1, #00B8D4);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 300ms;
+  box-shadow: 0 4px 6px -1px rgba(0, 184, 212, 0.2);
+}
+
+.futurama-button:hover {
+  background: linear-gradient(to right, #004a81, #0099b0);
+}
+
+.futurama-heading {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #00B8D4, #005CA1);
+}
+
+.planet-express {
+  background: linear-gradient(to right, #AF1010, #8B0000);
+}
+
+/* Space and stars effect */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 40px 70px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 50px 160px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 90px 40px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 130px 80px, white, rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 160px 120px, white, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* Futuristic glowing effect */
+.glow {
+  text-shadow: 0 0 5px rgba(34, 211, 238, 0.7), 0 0 10px rgba(34, 211, 238, 0.5);
+}
+
+/* Futuristic border */
+.futuristic-border {
+  position: relative;
+}
+
+.futuristic-border::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.8), transparent);
+}
+
+/* Animated background for sections */
+.space-bg {
+  background: linear-gradient(45deg, #0F172A 0%, #1E293B 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.space-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(1px 1px at 25px 5px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 50px 25px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(1px 1px at 125px 20px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(1.5px 1.5px at 50px 75px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(2px 2px at 175px 15px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+    radial-gradient(2.5px 2.5px at 150px 50px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.2;
+  z-index: 0;
+}
