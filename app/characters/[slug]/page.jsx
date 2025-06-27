@@ -23,9 +23,35 @@ const CharacterImage = ({ src, alt, name }) => {
     setImgError(false)
   }, [src])
 
+  // Check if the image is from our API (which should always work)
+  const isApiImage = src && src.startsWith('/api/character-avatar/')
+
   const handleError = () => {
-    setImgError(true)
-    // No intentamos cargar otra imagen, simplemente mostramos el componente de fallback
+    // If it's already an API image or we've already tried to handle the error, just show the fallback UI
+    if (isApiImage || imgError) {
+      setImgError(true)
+      return
+    }
+    
+    // Extract the character slug from the URL if possible
+    let slug = ''
+    try {
+      if (src.includes('/characters/')) {
+        const parts = src.split('/characters/')
+        slug = parts[parts.length - 1].split('?')[0]
+      } else {
+        // Create slug from name
+        slug = name.toLowerCase().replace(/\s+/g, '-')
+      }
+      
+      // Use our API route as fallback
+      const colorIndex = Math.floor(Math.random() * 5)
+      const colors = ['00B8D4', 'FF2F92', '005CA1', 'AF1010', '6B5CA5']
+      setImgSrc(`/api/character-avatar/${slug}?color=${colors[colorIndex]}`)
+    } catch (e) {
+      // If all else fails, show the fallback UI
+      setImgError(true)
+    }
   }
 
   return (
