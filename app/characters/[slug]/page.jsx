@@ -110,7 +110,8 @@ export default function CharacterDetailPage({ params }) {
         const data = await response.json()
         console.log('Fetched character details:', data)
         setCharacter(data.character || null)
-        setQuotes(data.character_quotes || [])
+        // Las citas vienen en data.quotes
+        setQuotes(data.quotes || [])
         setLoading(false)
       } catch (err) {
         console.error('Error fetching character details:', err)
@@ -231,7 +232,7 @@ export default function CharacterDetailPage({ params }) {
                 <div className="h-8 w-8 bg-[#080A0E] rounded-full flex items-center justify-center border-2 border-white/20 mr-3">
                   <span className="text-[#00B8D4] font-bold text-xs">PE</span>
                 </div>
-                <h1 className="text-3xl font-black text-white tracking-tight">{character.name}</h1>
+                <h1 className="text-3xl font-black text-white tracking-tight">{character.name?.full || character.name}</h1>
               </div>
               <div className="bg-[#080A0E] px-3 py-1 rounded-full border border-white/20">
                 <span className="text-xs font-mono text-[#00B8D4]">ID.{character.id || '???'}</span>
@@ -277,6 +278,29 @@ export default function CharacterDetailPage({ params }) {
                     </div>
                     
                     <div className="space-y-2 text-sm">
+                      {/* Nombre completo y sus partes */}
+                      {character.name?.first && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">First Name:</span>
+                          <span className="text-white font-medium">{character.name.first}</span>
+                        </div>
+                      )}
+                      
+                      {character.name?.middle && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Middle Name:</span>
+                          <span className="text-white font-medium">{character.name.middle}</span>
+                        </div>
+                      )}
+                      
+                      {character.name?.last && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Last Name:</span>
+                          <span className="text-white font-medium">{character.name.last}</span>
+                        </div>
+                      )}
+                      
+                      {/* Información básica */}
                       {character.gender && (
                         <div className="flex justify-between">
                           <span className="text-gray-400">Gender:</span>
@@ -318,20 +342,42 @@ export default function CharacterDetailPage({ params }) {
                     About
                   </h2>
                   <div className="bg-[#0D1117] border border-[#005CA1]/30 p-4 rounded-md">
-                    <p className="text-gray-300">{character.description}</p>
+                    <div className="space-y-3">
+                      {character.occupation && (
+                        <div>
+                          <h3 className="text-[#FF2F92] font-medium mb-1">Occupation</h3>
+                          <p className="text-gray-300">{character.occupation}</p>
+                        </div>
+                      )}
+                      
+                      {character.description ? (
+                        <p className="text-gray-300">{character.description}</p>
+                      ) : (
+                        <p className="text-gray-300">
+                          {character.name?.full || character.name} is a {character.gender === 'Male' ? 'male' : character.gender === 'Female' ? 'female' : ''} {character.species} from {character.homePlanet || 'unknown origin'}.
+                          {character.occupation ? ` Currently working as ${character.occupation}.` : ''}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
 
                 {/* Occupations with retro-futuristic styling */}
-                {character.occupations && character.occupations.length > 0 && (
+                {character.occupation && (
                   <div className="mb-6">
                     <h2 className="text-xl font-bold mb-3 text-[#FF2F92] flex items-center">
                       <span className="inline-block w-3 h-3 bg-[#FF2F92] mr-2"></span>
-                      Occupations
+                      Occupation
                     </h2>
                     <div className="bg-[#0D1117] border border-[#005CA1]/30 p-4 rounded-md">
                       <ul className="flex flex-wrap gap-2">
-                        {character.occupations.map((occupation, index) => (
+                        {/* Convertimos la ocupación en un array si es un string */}
+                        {(typeof character.occupation === 'string' 
+                          ? [character.occupation] 
+                          : Array.isArray(character.occupation) 
+                            ? character.occupation 
+                            : []
+                        ).map((occupation, index) => (
                           <li
                             key={index}
                             className="bg-[#080A0E] text-[#FF2F92] px-3 py-1 border border-[#FF2F92]/30 text-sm font-mono"
@@ -376,12 +422,12 @@ export default function CharacterDetailPage({ params }) {
                   Famous Quotes
                 </h2>
                 <div className="bg-[#0D1117]/80 backdrop-blur-sm border border-[#00B8D4]/20 p-5 rounded-md">
-                  {quotes.map((item, index) => (
+                  {quotes.map((quote, index) => (
                     <div key={index} className="mb-4 last:mb-0">
                       <blockquote className="relative">
                         <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#00B8D4] to-[#FF2F92]"></div>
                         <p className="pl-4 py-1 italic text-[#E2F8FF] text-lg">
-                          &ldquo;{item.quote}&rdquo;
+                          &ldquo;{typeof quote === 'string' ? quote : quote.quote || quote.saying || quote}&rdquo;
                         </p>
                       </blockquote>
                     </div>

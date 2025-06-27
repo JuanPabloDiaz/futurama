@@ -43,21 +43,49 @@ export async function GET(req, { params }) {
       image2 = `https://via.placeholder.com/300x400/${backgroundColor}/FFFFFF?text=${encodeURIComponent(fullName)}`
     }
     
-    // Create an enhanced character object with additional details
+    // Define skills based on character name
+    let skills = ['Future Living', 'Space Travel']
+    
+    if (fullName === 'Philip Fry') {
+      skills = ['Pizza Delivery', 'Time Travel Survival', 'Video Games']
+    } else if (fullName === 'Bender Rodriguez') {
+      skills = ['Bending', 'Theft', 'Cooking', 'Drinking']
+    } else if (fullName === 'Turanga Leela') {
+      skills = ['Piloting', 'Martial Arts', 'Leadership']
+    } else if (fullName === 'Hubert Farnsworth') {
+      skills = ['Inventing', 'Science', 'Doomsday Devices']
+    } else if (fullName === 'Amy Wong') {
+      skills = ['Engineering', 'Martian Farming', 'Languages']
+    } else if (fullName === 'Hermes Conrad') {
+      skills = ['Bureaucracy', 'Limbo', 'Organization']
+    }
+    
+    // Create an enhanced character object with all available details
     const enhancedCharacter = {
       id: character.id,
-      name: fullName,
+      name: {
+        first: character.name.first || '',
+        middle: character.name.middle || '',
+        last: character.name.last || '',
+        full: fullName
+      },
       slug: slug,
       gender: character.gender || 'unknown',
       species: character.species || 'unknown',
       homePlanet: character.homePlanet || 'unknown',
-      occupation: character.occupation || 'Unknown',
+      occupation: character.occupation || 'unknown',
+      age: character.age || 'unknown',
       avatar: avatarUrl,
-      images: [image1, image2],
-      age: character.age || 'unknown'
+      images: {
+        main: character.images?.main || '',
+        'head-shot': character.images?.['head-shot'] || '',
+        additional: [image1, image2].filter(img => img)
+      },
+      sayings: character.sayings || [],
+      skills: skills
     }
-
-    // Use actual character sayings if available, otherwise use generic ones
+    
+    // Process quotes for display
     let character_quotes = []
     
     if (character.sayings && character.sayings.length > 0) {
@@ -75,35 +103,21 @@ export async function GET(req, { params }) {
         { quote: `That's just the way things are in the future.` }
       ]
     }
-
-    // Add skills based on character
-    if (fullName === 'Philip Fry') {
-      enhancedCharacter.skills = ['Pizza Delivery', 'Time Travel Survival', 'Video Games']
-    } else if (fullName === 'Bender Rodriguez') {
-      enhancedCharacter.skills = ['Bending', 'Theft', 'Cooking', 'Drinking']
-    } else if (fullName === 'Turanga Leela') {
-      enhancedCharacter.skills = ['Piloting', 'Martial Arts', 'Leadership']
-    } else if (fullName === 'Hubert Farnsworth') {
-      enhancedCharacter.skills = ['Inventing', 'Science', 'Doomsday Devices']
-    } else if (fullName === 'Amy Wong') {
-      enhancedCharacter.skills = ['Engineering', 'Martian Farming', 'Languages']
-    } else if (fullName === 'Hermes Conrad') {
-      enhancedCharacter.skills = ['Bureaucracy', 'Limbo', 'Organization']
-    } else {
-      enhancedCharacter.skills = ['Future Living', 'Space Travel']
-    }
-
-    // Add cache control headers to prevent caching
+    
+    // Return the character data and quotes
     const response = NextResponse.json({
       character: enhancedCharacter,
-      character_quotes
+      quotes: character_quotes
     })
+    
+    // Add cache control headers to prevent caching
     response.headers.set('Cache-Control', 'no-store, max-age=0, must-revalidate')
     response.headers.set('Pragma', 'no-cache')
     response.headers.set('Expires', '0')
     
     return response
   } catch (error) {
+    console.error('Error fetching character:', error)
     return new NextResponse('Internal Server Error', { status: 500 })
   }
 }
