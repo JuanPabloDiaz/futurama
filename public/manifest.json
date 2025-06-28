@@ -1,0 +1,33 @@
+{
+  "name": "Futurama Characters Database",
+  "short_name": "Futurama DB",
+  "description": "Complete database of Futurama characters with detailed profiles and information",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00B8D4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["entertainment", "education", "reference"],
+  "screenshots": [
+    {
+      "src": "/futurama.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}
