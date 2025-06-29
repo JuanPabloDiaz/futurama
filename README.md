@@ -2,6 +2,44 @@
 
 A modern, full-stack web application showcasing characters from the beloved sci-fi animated series Futurama. Built with Next.js, React, and Tailwind CSS.
 
+## 🏗️ Architecture
+
+This project uses a full-stack Next.js architecture with no separate backend server. All data is stored in JSON files and served through Next.js API routes.
+
+```mermaid
+graph TD
+    subgraph "Frontend"
+        A[Browser] --> B[Next.js App]
+        B --> C[React Components]
+        C --> D[Tailwind CSS]
+    end
+    
+    subgraph "Next.js Server"
+        E[App Router]
+        F[API Routes]
+    end
+    
+    subgraph "Backend"
+        F --> G[Character API]
+        G --> H[JSON Data Files]
+    end
+    
+    A -- "HTTP Request" --> E
+    E -- "Server-Side Rendering" --> B
+    C -- "Fetch API" --> F
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bfb,stroke:#333,stroke-width:2px
+    style F fill:#bfb,stroke:#333,stroke-width:2px
+    style G fill:#fbb,stroke:#333,stroke-width:2px
+    style H fill:#fbb,stroke:#333,stroke-width:2px
+```
+
+For a detailed explanation of the architecture, see [Architecture Documentation](docs/arquitecture.md) ([Spanish](docs/arquitectura.md))
+
 ## 🌌 Features
 
 - **Character Gallery**: Browse all Futurama characters with a sleek, responsive UI
