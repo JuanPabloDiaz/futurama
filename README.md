@@ -6,6 +6,9 @@ A modern, full-stack web application showcasing characters from the beloved sci-
 
 This project uses a full-stack Next.js architecture with no separate backend server. All data is stored in JSON files and served through Next.js API routes.
 
+<details>
+<summary>View diagram</summary>
+
 ```mermaid
 graph TD
     subgraph "Frontend"
@@ -37,6 +40,8 @@ graph TD
     style G fill:#fbb,stroke:#333,stroke-width:2px
     style H fill:#fbb,stroke:#333,stroke-width:2px
 ```
+
+</details>
 
 For a detailed explanation of the architecture, see [Architecture Documentation](docs/arquitecture.md) ([Spanish](docs/arquitectura.md))
 
